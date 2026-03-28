@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Intention</title>
+  <meta name="description" content="Get help with the Intention app." />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0d0d0f;
+      --surface: #141416;
+      --border:  rgba(255,255,255,0.08);
+      --text:    #f0f0f0;
+      --muted:   rgba(240,240,240,0.45);
+      --radius:  16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(13,13,15,0.80);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
+    .nav-logo span { font-size: 0.95rem; font-weight: 500; }
+
+    nav a.nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.15s;
+    }
+    nav a.nav-link:hover { color: var(--text); }
+
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: rgba(240,240,240,0.70);
+      margin-bottom: 56px;
+      max-width: 520px;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+
+    .contact-card h2 {
+      font-size: 1.0rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .contact-card a.email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .contact-card a.email-link:hover {
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.04);
+    }
+
+    h2.faq-heading {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    details summary {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: var(--surface);
+      user-select: none;
+    }
+
+    details summary::-webkit-details-marker { display: none; }
+
+    details summary::after {
+      content: "+";
+      font-size: 1.1rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    details .faq-body {
+      padding: 4px 20px 18px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+      background: var(--surface);
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 56px 0 0;
+    }
+
+    footer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    footer p { font-size: 0.8rem; color: var(--muted); }
+
+    footer nav {
+      position: static;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      padding: 0;
+      gap: 24px;
+      display: flex;
+    }
+
+    footer nav a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    footer nav a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .content { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="icon.png" alt="Intention icon" />
+      <span>Intention</span>
+    </a>
+    <a class="nav-link" href="privacy.html">Privacy</a>
+  </nav>
+
+  <div class="content">
+    <p class="page-label">Help</p>
+    <h1>Support</h1>
+    <p class="lead">Questions, feedback, or something not working? We're a small team and we read every message.</p>
+
+    <!-- Contact card -->
+    <div class="contact-card">
+      <h2>Email support</h2>
+      <p>Typical response within one business day.</p>
+      <a class="email-link" href="mailto:support@intentionapp.org">
+        <!-- envelope icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m2 7 10 7 10-7"/>
+        </svg>
+        support@intentionapp.org
+      </a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 class="faq-heading">Common questions</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <details>
+          <summary>How do I add the lock screen widget?</summary>
+          <div class="faq-body">
+            On iPhone, long-press your lock screen and tap "Customize." Select "Add Widgets," find Intention in the list, and tap to add it. The widget appears below the time on your lock screen.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Why does the app ask for contacts permission?</summary>
+          <div class="faq-body">
+            If you type something like "text Anna," the app looks up the name in your contacts to find the right person. Your contacts are never sent off your device — the lookup happens locally.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Does the app work on Android?</summary>
+          <div class="faq-body">
+            Yes. Intention is available on both iOS and Android. The lock screen widget experience differs slightly between platforms but the core functionality is the same.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Is my data stored anywhere?</summary>
+          <div class="faq-body">
+            No. What you type into Intention is used to route you to an action and is not stored on our servers. See our <a href="privacy.html">Privacy Policy</a> for full details.
+          </div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>The app isn't routing me to the right place. What should I do?</summary>
+          <div class="faq-body">
+            Try rephrasing your intention more specifically. If something consistently doesn't work as expected, email us at <a href="mailto:support@intentionapp.org">support@intentionapp.org</a> with an example and we'll look into it.
+          </div>
+        </details>
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+  </div>
+
+  <footer>
+    <p>© <span id="year"></span> General Health Innovations, LLC</p>
+    <nav>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

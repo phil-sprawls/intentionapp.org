@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intention — Stop losing your intention</title>
+  <meta name="description" content="Intention helps you act on what you picked up your phone to do — before you drift." />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d0d0f;
+      --surface:  #141416;
+      --border:   rgba(255,255,255,0.08);
+      --text:     #f0f0f0;
+      --muted:    rgba(240,240,240,0.45);
+      --accent:   #f0f0f0;
+      --radius:   16px;
+      font-size: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(13,13,15,0.80);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+    }
+
+    .nav-logo span {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    nav a.nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.15s;
+    }
+
+    nav a.nav-link:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      margin-bottom: 36px;
+      box-shadow: 0 0 0 1px var(--border), 0 24px 48px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .badge-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .badge-btn:hover {
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .badge-btn svg {
+      flex-shrink: 0;
+      opacity: 0.9;
+    }
+
+    .badge-btn .badge-text small {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 1px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      margin-bottom: 56px;
+      max-width: 520px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .step-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── EXAMPLES ── */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .example-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .example-pill strong {
+      display: block;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    /* ── DIVIDER ── */
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 24px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer nav {
+      position: static;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      padding: 0;
+      gap: 24px;
+      display: flex;
+    }
+
+    footer nav a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    footer nav a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .section { padding: 72px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">
+      <img src="icon.png" alt="Intention icon" />
+      <span>Intention</span>
+    </a>
+    <a class="nav-link" href="support.html">Support</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-icon" src="icon.png" alt="Intention app icon" />
+    <h1>Stop losing your intention</h1>
+    <p>You picked up your phone for a reason. Intention helps you act on it before you drift.</p>
+    <div class="badge-row">
+      <a class="badge-btn" href="#" id="appstore-link">
+        <!-- Apple logo -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        <span class="badge-text">
+          <small>Download on the</small>
+          App Store
+        </span>
+      </a>
+      <a class="badge-btn" href="#" id="playstore-link">
+        <!-- Google Play logo -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 20.5v-17c0-.83 1-.99 1.45-.48l14 8.5c.39.24.39.72 0 .96l-14 8.5C3.99 21.49 3 21.33 3 20.5z"/>
+        </svg>
+        <span class="badge-text">
+          <small>Get it on</small>
+          Google Play
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <p class="section-label">How it works</p>
+    <h2>From thought to action in seconds</h2>
+    <div class="steps">
+      <div class="step">
+        <p class="step-num">01</p>
+        <h3>Tap the widget</h3>
+        <p>The lock screen widget opens Intention directly — before you get to your home screen.</p>
+      </div>
+      <div class="step">
+        <p class="step-num">02</p>
+        <h3>State your intention</h3>
+        <p>Type what you need to do, or tap a common action. No menus, no navigation.</p>
+      </div>
+      <div class="step">
+        <p class="step-num">03</p>
+        <h3>Go do it</h3>
+        <p>Intention routes you to the right app or action and gets out of the way.</p>
+      </div>
+      <div class="step">
+        <p class="step-num">04</p>
+        <h3>Mark it done</h3>
+        <p>Close the loop when you finish. Your phone session had a purpose — and you kept it.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- EXAMPLES -->
+  <section class="section">
+    <p class="section-label">Examples</p>
+    <h2>Works for whatever you picked up your phone to do</h2>
+    <div class="examples-grid">
+      <div class="example-pill"><strong>Text Anna running late</strong>Drafts the message and opens Messages</div>
+      <div class="example-pill"><strong>Directions to urgent care</strong>Opens Maps with the destination set</div>
+      <div class="example-pill"><strong>Remind me to pay rent tomorrow</strong>Sets a reminder and confirms it</div>
+      <div class="example-pill"><strong>Note: idea for pricing page</strong>Saves the thought before it's gone</div>
+      <div class="example-pill"><strong>Search tendonitis stretches</strong>Goes straight to search</div>
+      <div class="example-pill"><strong>Call Mom</strong>Dials immediately</div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© <span id="year"></span> General Health Innovations, LLC</p>
+    <nav>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Intention</title>
+  <meta name="description" content="Privacy policy for the Intention app." />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0d0d0f;
+      --surface: #141416;
+      --border:  rgba(255,255,255,0.08);
+      --text:    #f0f0f0;
+      --muted:   rgba(240,240,240,0.45);
+      --radius:  16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(13,13,15,0.80);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
+    .nav-logo span { font-size: 0.95rem; font-weight: 500; }
+
+    nav a.nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.15s;
+    }
+    nav a.nav-link:hover { color: var(--text); }
+
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .effective {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 56px;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 40px 0 12px;
+    }
+
+    p, ul {
+      font-size: 0.95rem;
+      color: rgba(240,240,240,0.75);
+      margin-bottom: 16px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    ul li { margin-bottom: 8px; }
+
+    a { color: var(--text); }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    footer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    footer p { font-size: 0.8rem; color: var(--muted); }
+
+    footer nav {
+      position: static;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      padding: 0;
+      gap: 24px;
+      display: flex;
+    }
+
+    footer nav a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    footer nav a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="icon.png" alt="Intention icon" />
+      <span>Intention</span>
+    </a>
+    <a class="nav-link" href="support.html">Support</a>
+  </nav>
+
+  <div class="content">
+    <p class="page-label">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="effective">Effective date: March 28, 2026</p>
+
+    <p>General Health Innovations, LLC ("we," "us," or "our") operates the Intention mobile application (the "App"). This policy describes what information we collect, how we use it, and your rights.</p>
+
+    <h2>1. Information we collect</h2>
+    <p>We collect minimal information necessary to operate and improve the App:</p>
+    <ul>
+      <li><strong>Usage analytics.</strong> We use PostHog to collect anonymized, aggregated data about how the App is used — such as which features are tapped and session length. This data does not identify you personally.</li>
+      <li><strong>Contacts (optional).</strong> If you use features that reference a contact by name (for example, "text Anna"), the App accesses your device contacts locally to resolve the name. Contact data is not transmitted to our servers or any third party.</li>
+      <li><strong>Intentions you type.</strong> The text you type into the App is processed on your device and used only to route you to the right action. It is not stored on our servers.</li>
+    </ul>
+
+    <h2>2. Information we do not collect</h2>
+    <ul>
+      <li>We do not collect your name, email address, or any account credentials.</li>
+      <li>We do not sell your data to third parties.</li>
+      <li>We do not use your data for advertising.</li>
+    </ul>
+
+    <h2>3. Third-party services</h2>
+    <p>The App uses PostHog for product analytics. PostHog processes anonymized event data subject to their own <a href="https://posthog.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
+
+    <h2>4. Data retention</h2>
+    <p>Because we do not store personal data on our servers, there is no personal data to retain or delete. Anonymized analytics data is retained in PostHog per their standard retention policy.</p>
+
+    <h2>5. Children</h2>
+    <p>The App is not directed at children under 13. We do not knowingly collect information from children under 13.</p>
+
+    <h2>6. Changes to this policy</h2>
+    <p>We may update this policy from time to time. Changes will be posted to this page with an updated effective date. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>7. Contact</h2>
+    <p>Questions about this policy? Email us at <a href="mailto:privacy@intentionapp.org">privacy@intentionapp.org</a>.</p>
+
+    <hr class="divider" />
+  </div>
+
+  <footer>
+    <p>© <span id="year"></span> General Health Innovations, LLC</p>
+    <nav>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
